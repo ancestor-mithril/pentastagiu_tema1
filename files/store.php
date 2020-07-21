@@ -32,4 +32,3 @@
     insert_book($_POST);
     header('Location: '.WSITE_ROOT.'/index.php');
     die();
-?>

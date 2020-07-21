@@ -52,4 +52,3 @@
     else
         die("invalid request");
     
-?>

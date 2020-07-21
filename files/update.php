@@ -35,4 +35,3 @@
         
     header('Location: '.WSITE_ROOT.'/index.php');
     die();
-?>

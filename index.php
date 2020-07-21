@@ -6,4 +6,3 @@
     require_once(DIRECTOR_SITE.SLASH."files".SLASH."create.php");
 
     
-?>
