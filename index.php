@@ -5,5 +5,5 @@
     require_once(DIRECTOR_SITE.SLASH."files".SLASH."database.php");
     require_once(DIRECTOR_SITE.SLASH."files".SLASH."create.php");
 
-    display_formular();
+    
 ?>

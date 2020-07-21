@@ -1,3 +1,22 @@
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+    .books {
+        border: 5px outset red;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    .add_form {
+        border-radius: 5px;
+        text-align: center;
+        padding: 30px;
+    }
+    </style>
+</head>
+<body>
 <?php
     function get_all_books(){
         $db = DB::get_connection();
@@ -14,7 +33,7 @@
     }
 
     function create_formular() :string {
-        $formular = "<form action=\"files/store.php\" method=\"POST\">";
+        $formular = "<div class=\"add_form\"><form action=\"files/store.php\" method=\"POST\">";
         $formular .= '<label for="title">Title:</label><br>';
         $formular .= '<input type="text" id="title" name="title" value="default title"><br>';
         $formular .= '<label for="author_name">Author:</label><br>';
@@ -24,7 +43,7 @@
         $formular .= '<label for="publisher_year">Year:</label><br>';
         $formular .= '<input type="number" id="publisher_year" name="publisher_year" value="2000"><br><br>';
         $formular .= '<input type="submit" value="Submit"><br>';
-        $formular .= "</form>";
+        $formular .= "</form></div>";
         return $formular;
     }
 
@@ -44,7 +63,7 @@
             $current_books .= '</div>';
             
         }
-        $current_books .= "<div>";
+        $current_books .= "</div>";
         return $current_books;
     }
 
@@ -53,4 +72,8 @@
         echo display_books($books);
         echo create_formular();
     }
+
+    display_formular();
 ?>
+</body>
+</html>
