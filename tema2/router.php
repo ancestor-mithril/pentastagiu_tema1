@@ -14,7 +14,18 @@
                     "controllers/Controller.php",
                     "models/Model.php",
                     "views/View.php"
+                ],
+                "/author" => [
+                    "controllers/AuthorController.php",
+                    "models/AuthorModel.php",
+                    "views/AuthorView.php",
+                ],
+                "/publisher" => [
+                    "controllers/PublisherController.php",
+                    "models/PublisherModel.php",
+                    "views/PublisherView.php",
                 ]
+
             ];
         }
 

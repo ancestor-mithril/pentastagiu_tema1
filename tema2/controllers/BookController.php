@@ -37,7 +37,11 @@
 
         private function createNewBook()
         {
-            echo $this->view->createNewEntryFormular();
+            $authors = $this->model->getAllAuthors();
+            $publishers = $this->model->getAllPublishers();
+            if (empty ($authors) || empty ($publishers))
+                die ("You must first have at least an author and a publisher");
+            echo $this->view->createNewEntryFormular($authors, $publishers);
         }
 
         private function storeNewBook()
@@ -70,11 +74,14 @@
             $book = $this->model->getBook($_GET["id"]);
             if (empty($book))
                 die("error at parsing request");
-            echo $this->view->createEditFormular($book[0]);
+            $authors = $this->model->getAllAuthors();
+            $publishers = $this->model->getAllPublishers();
+            echo $this->view->createEditFormular($book[0], $authors, $publishers);
         }
 
         private function updateBook()
         {
+            //echo "<pre>"; print_r($_POST); echo "</pre>"; die();
             if (isset($_POST["id"]))
                 $this->model->updateBook($_POST);
             else
