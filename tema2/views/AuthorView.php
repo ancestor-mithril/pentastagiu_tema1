@@ -26,10 +26,9 @@
             }
             $currentAuthors .= '</div><form action="' . WSITE_ROOT . '/author/create" method="POST">
                 <input type=Submit value="Add new author"></form><br>';
-            $currentAuthors .= '</div><form action="' . WSITE_ROOT . '/book" method="POST">
-                <input type=Submit value="Go to books"></form><br>';
-            $currentAuthors .= '</div><form action="' . WSITE_ROOT . '/publisher" method="POST">
-                <input type=Submit value="Go to publishers"></form><br>';
+            $currentAuthors .= '<a href="' . WSITE_ROOT . '/book">Go to Books</a><br><br>';
+            $currentAuthors .= '<a href="' . WSITE_ROOT . '/publisher">Go to Publishers</a><br><br>';
+            
             return $currentAuthors;
         }
 

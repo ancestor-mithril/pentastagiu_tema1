@@ -55,7 +55,6 @@
 
         private function deleteAuthor()
         {
-            die ("not yet implemented");
             if (isset ($_POST["id"]))
                 $this->model->deleteAuthor ($_POST["id"]);
             else

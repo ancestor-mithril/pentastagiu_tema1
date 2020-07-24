@@ -50,10 +50,8 @@
             }
             $currentBooks .= '</div><form action="' . WSITE_ROOT . '/book/create" method="POST">
                 <input type=Submit value="Add new book"></form>';
-            $currentBooks .= '</div><form action="' . WSITE_ROOT . '/author" method="POST">
-                <input type=Submit value="Go to authors"></form><br>';
-            $currentBooks .= '</div><form action="' . WSITE_ROOT . '/publisher" method="POST">
-                <input type=Submit value="Go to publishers"></form><br>';
+            $currentBooks .= '<a href="' . WSITE_ROOT . '/author">Go to Authors</a><br><br>';
+            $currentBooks .= '<a href="' . WSITE_ROOT . '/publisher">Go to Publishers</a><br><br>';
             return $currentBooks;
         }
 

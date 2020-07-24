@@ -55,9 +55,8 @@
 
         private function deletePublisher()
         {
-            die("not yet implemented");
             if (isset ($_POST["id"]))
-                $this->model->deleteAuthor ($_POST["id"]);
+                $this->model->deletePublisher ($_POST["id"]);
             else
                 die ("invalid request");
             header ('Location: '.WSITE_ROOT.'/publisher');

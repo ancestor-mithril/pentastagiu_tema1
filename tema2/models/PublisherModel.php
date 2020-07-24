@@ -39,6 +39,7 @@
 
         public function deletePublisher(int $id) {
             //$db = Database::getConnection();
+            $this->db->beginTransaction();
             $sql = "DELETE FROM `publishers` WHERE id=:id";
             $req = $this->db->prepare ($sql);
             $reqParams = [
@@ -49,6 +50,17 @@
             if ($reqStatus === false) {
                 echo "<pre>"; print_r ($reqError); echo "</pre>"; die();
             }
+            $sql = "DELETE FROM `books` where publisher_id=:publisher_id";
+            $req = $this->db->prepare ($sql);
+            $reqParams = [
+                "publisher_id" => $id
+            ];
+            $reqStatus = $req->execute ($reqParams);
+            $reqError = $req->errorInfo();
+            if ($reqStatus === false) {
+                echo "<pre>"; print_r ($reqError); echo "</pre>"; die();
+            }
+            $this->db->commit();
         }
 
         public function getPublisher(int $id): array {

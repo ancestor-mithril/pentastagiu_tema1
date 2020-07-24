@@ -39,7 +39,8 @@
 
         public function deleteAuthor (int $id) {
             //$db = Database::getConnection();
-            $sql = "DELETE FROM `books` WHERE id=:id";
+            $this->db->beginTransaction();
+            $sql = "DELETE FROM `authors` WHERE id=:id";
             $req = $this->db->prepare ($sql);
             $reqParams = [
                 "id" => $id
@@ -49,6 +50,17 @@
             if ($reqStatus === false) {
                 echo "<pre>"; print_r ($reqError); echo "</pre>"; die();
             }
+            $sql = "DELETE FROM `books` where author_id=:author_id";
+            $req = $this->db->prepare ($sql);
+            $reqParams = [
+                "author_id" => $id
+            ];
+            $reqStatus = $req->execute ($reqParams);
+            $reqError = $req->errorInfo();
+            if ($reqStatus === false) {
+                echo "<pre>"; print_r ($reqError); echo "</pre>"; die();
+            }
+            $this->db->commit();
         }
 
         public function getAuthor(int $id): array {
