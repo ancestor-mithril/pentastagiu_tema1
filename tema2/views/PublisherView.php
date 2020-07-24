@@ -10,7 +10,7 @@
             return $formular;
         }
 
-        private function displayPublishers($publishers): string {
+        private function displayPublishers(array $publishers): string {
             $currentPublishers = "<div>";
             foreach ($publishers as $publisher) 
             {
@@ -33,17 +33,17 @@
             return $currentPublishers;
         }
 
-        public function createPublisherPage($publishers): string {
-            $currentPublishers = $this->displayPublishers($publishers);
+        public function createPublisherPage(array $publishers): string {
+            $currentPublishers = $this->displayPublishers ($publishers);
             ob_start();
             $publisherPage = "views/TPL/publisher_page.html";
-            include($publisherPage);
+            include ($publisherPage);
             $page = ob_get_contents();
             ob_end_clean();
             return $page;
         }
 
-        public function createEditFormular($publisher): string {
+        public function createEditFormular(array $publisher): string {
             $formular = '<form action="' . WSITE_ROOT . '/publisher/update" method="POST">';
             $formular .= '<label for="name">Name:</label><br>';
             $formular .= '<input type="hidden" id="id" name="id" value="' . $publisher["id"] . '"><br>';

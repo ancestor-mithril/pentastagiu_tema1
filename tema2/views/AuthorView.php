@@ -10,7 +10,7 @@
             return $formular;
         }
 
-        private function displayAuthors($authors): string {
+        private function displayAuthors(array $authors): string {
             $currentAuthors = "<div>";
             foreach ($authors as $author) 
             {
@@ -33,17 +33,17 @@
             return $currentAuthors;
         }
 
-        public function createAuthorPage($authors): string {
-            $currentAuthors = $this->displayAuthors($authors);
+        public function createAuthorPage(array $authors): string {
+            $currentAuthors = $this->displayAuthors ($authors);
             ob_start();
             $authorPage = "views/TPL/author_page.html";
-            include($authorPage);
+            include ($authorPage);
             $page = ob_get_contents();
             ob_end_clean();
             return $page;
         }
 
-        public function createEditFormular($author): string {
+        public function createEditFormular(array $author): string {
             $formular = '<form action="' . WSITE_ROOT . '/author/update" method="POST">';
             $formular .= '<label for="name">Name:</label><br>';
             $formular .= '<input type="hidden" id="id" name="id" value="' . $author["id"] . '"><br>';

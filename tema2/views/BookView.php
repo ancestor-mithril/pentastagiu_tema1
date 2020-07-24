@@ -1,9 +1,9 @@
 <?php
     class BookView extends View
     {
-        private function addSelectOptions(array $options, string $default = "1"): string {
+        private function addSelectOptions (array $options, string $default = "1"): string {
             $select = "";
-            foreach($options as $option) {
+            foreach ($options as $option) {
                 $select .= '<option value="' . $option["id"] . '"';
                 if ($option["id"] === $default)
                     $select .= ' selected ';
@@ -18,11 +18,11 @@
             $formular .= '<input type="text" id="title" name="title" value="default title"><br>';
             $formular .= '<label for="author_id">Author:</label><br>';
             $formular .= '<select name="author_id" id="author_id">';
-            $formular .= $this->addSelectOptions($authors);
+            $formular .= $this->addSelectOptions ($authors);
             $formular .= '</select><br>';
             $formular .= '<label for="publisher_id">Publisher:</label><br>';
             $formular .= '<select name="publisher_id" id="publisher_id">';
-            $formular .= $this->addSelectOptions($publishers);
+            $formular .= $this->addSelectOptions ($publishers);
             $formular .= '</select><br>';
             $formular .= '<label for="publisher_year">Year:</label><br>';
             $formular .= '<input type="number" id="publisher_year" name="publisher_year" value="2000"><br><br>';
@@ -58,10 +58,10 @@
         }
 
         public function createBookPage(array $books): string {
-            $currentBooks = $this->displayBooks($books);
+            $currentBooks = $this->displayBooks ($books);
             ob_start();
             $booksPage = "views/TPL/book_page.html";
-            include($booksPage);
+            include ($booksPage);
             $page = ob_get_contents();
             ob_end_clean();
             return $page;
@@ -74,11 +74,11 @@
             $formular .= '<input type="text" id="title" name="title" value="' . $book["title"] . '"><br>';
             $formular .= '<label for="author_name">Author:</label><br>';
             $formular .= '<select name="author_id" id="author_id">';
-            $formular .= $this->addSelectOptions($authors, $book["author_id"]);
+            $formular .= $this->addSelectOptions ($authors, $book["author_id"]);
             $formular .= '</select><br>';
             $formular .= '<label for="publisher_name">Publisher:</label><br>';
             $formular .= '<select name="publisher_id" id="publisher_id">';
-            $formular .= $this->addSelectOptions($publishers, $book["publisher_id"]);
+            $formular .= $this->addSelectOptions ($publishers, $book["publisher_id"]);
             $formular .= '</select><br>';
             $formular .= '<label for="publisher_year">Year:</label><br>';
             $formular .= '<input type="number" id="publisher_year" name="publisher_year" value="'

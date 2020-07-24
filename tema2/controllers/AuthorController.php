@@ -42,7 +42,7 @@
 
         private function storeNewAuthor()
         {
-            $this->model->insertAuthor($_POST);
+            $this->model->insertAuthor ($_POST);
             header ('Location: '.WSITE_ROOT.'/author');
             die();
         }
@@ -50,37 +50,37 @@
         private function displayAuthors()
         {
             $authors = $this->model->getAllAuthors();
-            echo $this->view->createAuthorPage($authors);
+            echo $this->view->createAuthorPage ($authors);
         }
 
         private function deleteAuthor()
         {
-            die("not yet implemented");
-            if (isset($_POST["id"]))
-                $this->model->deleteAuthor($_POST["id"]);
+            die ("not yet implemented");
+            if (isset ($_POST["id"]))
+                $this->model->deleteAuthor ($_POST["id"]);
             else
-                die("invalid request");
+                die ("invalid request");
             header ('Location: '.WSITE_ROOT.'/author');
             die();
         }
 
         private function editAuthor()
         {
-            if (! isset($_GET["id"]))
+            if (! isset ($_GET["id"]))
                 die ("invalid request");
-            $author = $this->model->getAuthor($_GET["id"]);
-            if (empty($author))
-                die("error at parsing request");
-            echo $this->view->createEditFormular($author[0]);
+            $author = $this->model->getAuthor ($_GET["id"]);
+            if (empty ($author))
+                die ("error at parsing request");
+            echo $this->view->createEditFormular ($author[0]);
         }
 
         private function updateAuthor()
         {
-            if (isset($_POST["id"]))
-                $this->model->updateAuthor($_POST);
+            if (isset ($_POST["id"]))
+                $this->model->updateAuthor ($_POST);
             else
-                die("invalid request");
-            header('Location: '.WSITE_ROOT.'/author');
+                die ("invalid request");
+            header ('Location: '.WSITE_ROOT.'/author');
             die();
         }
     }

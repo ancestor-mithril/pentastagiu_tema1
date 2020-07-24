@@ -30,8 +30,8 @@
             }
             else
             {
-                print_r(explode("?", $action));
-                die("Invalid action: $action");
+                print_r (explode("?", $action));
+                die ("Invalid action: $action");
             }
         }
 
@@ -41,12 +41,12 @@
             $publishers = $this->model->getAllPublishers();
             if (empty ($authors) || empty ($publishers))
                 die ("You must first have at least an author and a publisher");
-            echo $this->view->createNewEntryFormular($authors, $publishers);
+            echo $this->view->createNewEntryFormular ($authors, $publishers);
         }
 
         private function storeNewBook()
         {
-            $this->model->insertBook($_POST);
+            $this->model->insertBook ($_POST);
             header ('Location: '.WSITE_ROOT.'/book');
             die();
         }
@@ -54,39 +54,39 @@
         private function displayBooks()
         {
             $books = $this->model->getAllBooks();
-            echo $this->view->createBookPage($books);
+            echo $this->view->createBookPage ($books);
         }
 
         private function deleteBook()
         {
-            if (isset($_POST["id"]))
-                $this->model->deleteBook($_POST["id"]);
+            if (isset ($_POST["id"]))
+                $this->model->deleteBook ($_POST["id"]);
             else
-                die("invalid request");
+                die ("invalid request");
             header ('Location: '.WSITE_ROOT.'/book');
-            die();
+            die ();
         }
 
         private function editBook()
         {
-            if (! isset($_GET["id"]))
+            if (! isset ($_GET["id"]))
                 die ("invalid request");
-            $book = $this->model->getBook($_GET["id"]);
-            if (empty($book))
-                die("error at parsing request");
+            $book = $this->model->getBook ($_GET["id"]);
+            if (empty ($book))
+                die ("error at parsing request");
             $authors = $this->model->getAllAuthors();
             $publishers = $this->model->getAllPublishers();
-            echo $this->view->createEditFormular($book[0], $authors, $publishers);
+            echo $this->view->createEditFormular ($book[0], $authors, $publishers);
         }
 
         private function updateBook()
         {
             //echo "<pre>"; print_r($_POST); echo "</pre>"; die();
-            if (isset($_POST["id"]))
-                $this->model->updateBook($_POST);
+            if (isset ($_POST["id"]))
+                $this->model->updateBook ($_POST);
             else
-                die("invalid request");
-            header('Location: '.WSITE_ROOT.'/book');
+                die ("invalid request");
+            header ('Location: '.WSITE_ROOT.'/book');
             die();
         }
     }
