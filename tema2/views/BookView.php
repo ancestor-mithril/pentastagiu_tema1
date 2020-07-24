@@ -1,7 +1,7 @@
 <?php
     class BookView extends View
     {
-        private function addSelectOptions($options, $default = "1"): string {
+        private function addSelectOptions(array $options, string $default = "1"): string {
             $select = "";
             foreach($options as $option) {
                 $select .= '<option value="' . $option["id"] . '"';
@@ -12,7 +12,7 @@
             return $select;
         }
 
-        public function createNewEntryFormular($authors, $publishers): string {
+        public function createNewEntryFormular(array $authors, array $publishers): string {
             $formular = '<div class="add_form"><form action="' . WSITE_ROOT . '/book/store" method="POST">';
             $formular .= '<label for="title">Title:</label><br>';
             $formular .= '<input type="text" id="title" name="title" value="default title"><br>';
@@ -31,7 +31,7 @@
             return $formular;
         }
 
-        private function displayBooks($books): string {
+        private function displayBooks(array $books): string {
             $currentBooks = "<div>";
             foreach ($books as $book) 
             {
@@ -50,10 +50,14 @@
             }
             $currentBooks .= '</div><form action="' . WSITE_ROOT . '/book/create" method="POST">
                 <input type=Submit value="Add new book"></form>';
+            $currentBooks .= '</div><form action="' . WSITE_ROOT . '/author" method="POST">
+                <input type=Submit value="Go to authors"></form><br>';
+            $currentBooks .= '</div><form action="' . WSITE_ROOT . '/publisher" method="POST">
+                <input type=Submit value="Go to publishers"></form><br>';
             return $currentBooks;
         }
 
-        public function createBookPage($books): string {
+        public function createBookPage(array $books): string {
             $currentBooks = $this->displayBooks($books);
             ob_start();
             $booksPage = "views/TPL/book_page.html";
@@ -63,7 +67,7 @@
             return $page;
         }
 
-        public function createEditFormular($book, $authors, $publishers): string {
+        public function createEditFormular(array $book, array $authors, array $publishers): string {
             $formular = '<form action="' . WSITE_ROOT . '/book/update" method="POST">';
             $formular .= '<label for="title">Title:</label><br>';
             $formular .= '<input type="hidden" id="id" name="id" value="' . $book["id"] . '"><br>';

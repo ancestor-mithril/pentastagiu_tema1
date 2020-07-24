@@ -3,7 +3,12 @@ PENTASTAGIU_TEMA_2
 
 * author: Stoica George
 
-* sql create script:
+# Accesare
+```
+http://localhost/pentastagiu/tema2/index/book
+```
+
+# sql create script:
 ```
 CREATE TABLE `books` (
   `id` INT(10) NOT NULL AUTO_INCREMENT ,
