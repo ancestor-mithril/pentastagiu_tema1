@@ -5,7 +5,7 @@ PENTASTAGIU_TEMA_2
 
 # Accesare
 ```
-http://localhost/pentastagiu/tema2/index/book
+http://localhost/pentastagiu/tema2/
 ```
 
 # sql create script:
