@@ -38,22 +38,31 @@
     </div>
 @endif
 
-<h1>Add an author</h1>
+<h1>Add a book</h1>
 
 
-{{ Form::open(array('url' => 'author')) }}
+{{ Form::open(array('url' => 'book')) }}
 
 <div class="form-group">
-    {{ Form::label('name', 'Name') }}
-    {{ Form::text('name', Request::old('name'), array('class' => 'form-control')) }}
+    {{ Form::label('title', 'Title') }}
+    {{ Form::text('title', Request::old('title'), array('class' => 'form-control')) }}
+
+    {{ Form::label('author_id', 'Author') }}
+    {{ Form::text('author_id', Request::old('author_id'), array('class' => 'form-control')) }}
+
+    {{ Form::label('publisher_id', 'Publisher') }}
+    {{ Form::text('publisher_id', Request::old('publisher_id'), array('class' => 'form-control')) }}
+
+    {{ Form::label('publisher_year', 'Publisher year') }}
+    {{ Form::text('publisher_year', Request::old('publisher_year'), array('class' => 'form-control')) }}
 </div>
 
 
-{{ Form::submit('Add a new author!', array('class' => 'btn btn-primary')) }}
+{{ Form::submit('Add a new book!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
 
-<a href="/author">See all authors!</a><br>
+<a href="/book">See all books!</a><br>
 
 </body>
 </html>

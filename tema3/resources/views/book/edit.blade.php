@@ -82,35 +82,28 @@
 @endif
 
 <div class="content">
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Created_at</td>
-            <td>Updated_at</td>
-            <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $author->id }}</td>
-                <td>{{ $author->name }}</td>
-                <td>{{ $author->created_at }}</td>
-                <td>{{ $author->updated_at }}</td>
-                <td>
-                    {{ Form::open(array('url' => 'author/' . $author->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $author->id . '/edit') }}">Edit this Author</a>
+    {{ Form::open(array('url' => '/book/' . $book->id, 'method' => 'PUT')) }}
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/author/create">Add a new Author!</a><br>
-    <a href="/author">See all authors!</a><br>
+    <div class="form-group">
+        {{ Form::label('title', 'Title') }}
+        {{ Form::text('title', $book->title, array('class' => 'form-control')) }}
+
+        {{ Form::label('author_id', 'Author') }}
+        {{ Form::text('author_id', $book->author_id, array('class' => 'form-control')) }}
+
+        {{ Form::label('publisher_id', 'Publisher') }}
+        {{ Form::text('publisher_id', $book->publisher_id, array('class' => 'form-control')) }}
+
+        {{ Form::label('publisher_year', 'Publisher year') }}
+        {{ Form::text('publisher_year', $book->publisher_year, array('class' => 'form-control')) }}
+    </div>
+
+    {{ Form::submit('Edit the Book!', array('class' => 'btn btn-primary')) }}
+
+    {{ Form::close() }}
+    <br>
+    <a href="/book/create">Add a new Book!</a><br>
+    <a href="/book">See all books!</a><br>
 </div>
 
 </body>

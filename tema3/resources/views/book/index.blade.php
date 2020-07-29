@@ -86,31 +86,43 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td>Name</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Publisher</td>
+            <td>Publisher year</td>
             <td>Created_at</td>
             <td>Updated_at</td>
             <td>Actions</td>
         </tr>
         </thead>
         <tbody>
+        @foreach($books as $key => $value)
             <tr>
-                <td>{{ $author->id }}</td>
-                <td>{{ $author->name }}</td>
-                <td>{{ $author->created_at }}</td>
-                <td>{{ $author->updated_at }}</td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->title }}</td>
+                <td>{{ $value->author_id }}</td>
+                <td>{{ $value->publisher_id }}</td>
+                <td>{{ $value->publisher_year }}</td>
+                <td>{{ $value->created_at }}</td>
+                <td>{{ $value->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'author/' . $author->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
+                    {{ Form::open(array('url' => 'book/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ method_field('DELETE') }}
+                    {{ Form::submit('Delete this Book', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $author->id . '/edit') }}">Edit this Author</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('book/' . $value->id) }}">
+                        Show this Book</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('book/' . $value->id . '/edit') }}">
+                        Edit this Book</a>
 
                 </td>
             </tr>
+        @endforeach
         </tbody>
     </table>
-    <a href="/author/create">Add a new Author!</a><br>
-    <a href="/author">See all authors!</a><br>
+    <a href="/book/create">Add a new Book!</a><br>
+    <a href="/publisher">Visit publishers</a><br>
+    <a href="/author">Visit authors</a><br>
 </div>
 
 </body>

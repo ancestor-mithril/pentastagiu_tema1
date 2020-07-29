@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Author;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;

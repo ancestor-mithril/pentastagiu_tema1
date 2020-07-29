@@ -82,35 +82,19 @@
 @endif
 
 <div class="content">
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Created_at</td>
-            <td>Updated_at</td>
-            <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $author->id }}</td>
-                <td>{{ $author->name }}</td>
-                <td>{{ $author->created_at }}</td>
-                <td>{{ $author->updated_at }}</td>
-                <td>
-                    {{ Form::open(array('url' => 'author/' . $author->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $author->id . '/edit') }}">Edit this Author</a>
+    {{ Form::open(array('url' => '/publisher/' . $publisher->id, 'method' => 'PUT')) }}
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/author/create">Add a new Author!</a><br>
-    <a href="/author">See all authors!</a><br>
+    <div class="form-group">
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', $publisher->name, array('class' => 'form-control')) }}
+    </div>
+
+    {{ Form::submit('Edit the Publisher!', array('class' => 'btn btn-primary')) }}
+
+    {{ Form::close() }}
+    <br>
+    <a href="/publisher/create">Add a new Publisher!</a><br>
+    <a href="/publisher">See all publishers!</a><br>
 </div>
 
 </body>

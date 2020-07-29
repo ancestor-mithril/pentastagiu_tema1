@@ -93,24 +93,30 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($publishers as $key => $value)
             <tr>
-                <td>{{ $author->id }}</td>
-                <td>{{ $author->name }}</td>
-                <td>{{ $author->created_at }}</td>
-                <td>{{ $author->updated_at }}</td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->name }}</td>
+                <td>{{ $value->created_at }}</td>
+                <td>{{ $value->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'author/' . $author->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
+                    {{ Form::open(array('url' => 'publisher/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ method_field('DELETE') }}
+                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $author->id . '/edit') }}">Edit this Author</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('publisher/' . $value->id) }}">
+                        Show this Publisher</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $value->id . '/edit') }}">
+                        Edit this Publisher</a>
 
                 </td>
             </tr>
+        @endforeach
         </tbody>
     </table>
-    <a href="/author/create">Add a new Author!</a><br>
-    <a href="/author">See all authors!</a><br>
+    <a href="/publisher/create">Add a new Publisher!</a><br>
+    <a href="/book">Visit books</a><br>
+    <a href="/author">Visit authors</a><br>
 </div>
 
 </body>

@@ -38,10 +38,10 @@
     </div>
 @endif
 
-<h1>Add an author</h1>
+<h1>Add a publisher</h1>
 
 
-{{ Form::open(array('url' => 'author')) }}
+{{ Form::open(array('url' => 'publisher')) }}
 
 <div class="form-group">
     {{ Form::label('name', 'Name') }}
@@ -49,11 +49,11 @@
 </div>
 
 
-{{ Form::submit('Add a new author!', array('class' => 'btn btn-primary')) }}
+{{ Form::submit('Add a new publisher!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
 
-<a href="/author">See all authors!</a><br>
+<a href="/publisher">See all publishers!</a><br>
 
 </body>
 </html>

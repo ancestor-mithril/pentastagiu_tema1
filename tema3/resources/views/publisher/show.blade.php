@@ -94,23 +94,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ $author->id }}</td>
-                <td>{{ $author->name }}</td>
-                <td>{{ $author->created_at }}</td>
-                <td>{{ $author->updated_at }}</td>
+                <td>{{ $publisher->id }}</td>
+                <td>{{ $publisher->name }}</td>
+                <td>{{ $publisher->created_at }}</td>
+                <td>{{ $publisher->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'author/' . $author->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $author->id . '/edit') }}">Edit this Author</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
+                        Edit this Publisher</a>
 
                 </td>
             </tr>
         </tbody>
     </table>
-    <a href="/author/create">Add a new Author!</a><br>
-    <a href="/author">See all authors!</a><br>
+    <a href="/publisher/create">Add a new Publisher!</a><br>
+    <a href="/publisher">See all publishers!</a><br>
 </div>
 
 </body>

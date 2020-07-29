@@ -86,7 +86,7 @@
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', null, array('class' => 'form-control')) }}
+        {{ Form::text('name', $author->name, array('class' => 'form-control')) }}
     </div>
 
     {{ Form::submit('Edit the Author!', array('class' => 'btn btn-primary')) }}

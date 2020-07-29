@@ -100,14 +100,11 @@
                 <td>{{ $value->created_at }}</td>
                 <td>{{ $value->updated_at }}</td>
                 <td>
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                     {{ Form::open(array('url' => 'author/' . $value->id, 'class' => 'pull-right')) }}
                     {{ method_field('DELETE') }}
                     {{ Form::submit('Delete this Author', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
                     <a class="btn btn-small btn-success" href="{{ URL::to('author/' . $value->id) }}">Show this Author</a>
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                     <a class="btn btn-small btn-info" href="{{ URL::to('author/' . $value->id . '/edit') }}">Edit this Author</a>
 
                 </td>
@@ -115,7 +112,9 @@
         @endforeach
         </tbody>
     </table>
-    <a href="/author/create">Add a new Author!</a>
+    <a href="/author/create">Add a new Author!</a><br>
+    <a href="/book">Visit books</a><br>
+    <a href="/publisher">Visit publishers</a><br>
 </div>
 
 </body>
