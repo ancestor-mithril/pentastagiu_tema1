@@ -48,10 +48,10 @@
     {{ Form::text('title', Request::old('title'), array('class' => 'form-control')) }}
 
     {{ Form::label('author_id', 'Author') }}
-    {{ Form::text('author_id', Request::old('author_id'), array('class' => 'form-control')) }}
+    {{ Form::select('author_id', $authors, null, array('class' => 'form-control')) }}
 
     {{ Form::label('publisher_id', 'Publisher') }}
-    {{ Form::text('publisher_id', Request::old('publisher_id'), array('class' => 'form-control')) }}
+    {{ Form::select('publisher_id', $publishers, null, array('class' => 'form-control')) }}
 
     {{ Form::label('publisher_year', 'Publisher year') }}
     {{ Form::text('publisher_year', Request::old('publisher_year'), array('class' => 'form-control')) }}

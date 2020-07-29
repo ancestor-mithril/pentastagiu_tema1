@@ -89,10 +89,10 @@
         {{ Form::text('title', $book->title, array('class' => 'form-control')) }}
 
         {{ Form::label('author_id', 'Author') }}
-        {{ Form::text('author_id', $book->author_id, array('class' => 'form-control')) }}
+        {{ Form::select('author_id', $authors, $book->author_id, array('class' => 'form-control')) }}
 
         {{ Form::label('publisher_id', 'Publisher') }}
-        {{ Form::text('publisher_id', $book->publisher_id, array('class' => 'form-control')) }}
+        {{ Form::select('publisher_id', $publishers, $book->publisher_id, array('class' => 'form-control')) }}
 
         {{ Form::label('publisher_year', 'Publisher year') }}
         {{ Form::text('publisher_year', $book->publisher_year, array('class' => 'form-control')) }}

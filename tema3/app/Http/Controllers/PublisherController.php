@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publisher;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
 
@@ -57,8 +59,11 @@ class PublisherController extends Controller
 
     public function destroy(int $id)
     {
+        DB::beginTransaction();
         $publisher = Publisher::find($id);
         $publisher->delete();
+        DB::table('books')->where('publisher_id', $id)->delete();
+        DB::commit();
         return Redirect::to('publisher');
     }
 }

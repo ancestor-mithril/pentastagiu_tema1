@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -97,8 +99,11 @@ class AuthorController extends Controller
      */
     public function destroy(int $id)
     {
+        DB::beginTransaction();
         $author = Author::find($id);
         $author->delete();
+        DB::table('books')->where('author_id', $id)->delete();
+        DB::commit();
         return Redirect::to('author');
     }
 }
