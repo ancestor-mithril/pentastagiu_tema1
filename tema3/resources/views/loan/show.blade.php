@@ -91,13 +91,15 @@
     </div>
 @endif
 
-
 <div class="content">
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
             <td>ID</td>
-            <td>Name</td>
+            <td>User</td>
+            <td>Book</td>
+            <td>Loan start</td>
+            <td>Loan end</td>
             <td>Created_at</td>
             <td>Updated_at</td>
             <td>Actions</td>
@@ -105,24 +107,27 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ $publisher->id }}</td>
-                <td>{{ $publisher->name }}</td>
-                <td>{{ $publisher->created_at }}</td>
-                <td>{{ $publisher->updated_at }}</td>
+                <td>{{ $loan->id }}</td>
+                <td><a href="/user/{{ $loan->user->id }}"> {{ $loan->user->name }} </a></td>
+                <td><a href="/book/{{ $loan->book->id }}"> {{ $loan->book->title }} </a></td>
+                <td>{{ $loan->loan_begin }}</td>
+                <td>{{ $loan->loan_end }}</td>
+                <td>{{ $loan->created_at }}</td>
+                <td>{{ $loan->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'loan/' . $loan->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete this Loan', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
-                        Edit this Publisher</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('loan/' . $loan->id . '/edit') }}">
+                        Edit this Loan</a>
 
                 </td>
             </tr>
         </tbody>
     </table>
-    <a href="/publisher/create">Add a new Publisher!</a><br>
-    <a href="/publisher">See all publishers!</a><br>
+    <a href="/loan/create">Add a new Loan!</a><br>
+    <a href="/loan">See all loans!</a><br>
 </div>
 
 </body>

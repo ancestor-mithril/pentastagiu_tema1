@@ -81,6 +81,16 @@
     </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="content">
     <table class="table table-striped table-bordered">
         <thead>
@@ -100,8 +110,8 @@
             <tr>
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->title }}</td>
-                <td>{{ $value->author_id }}</td>
-                <td>{{ $value->publisher_id }}</td>
+                <td><a href="/author/{{ $value->author->id }}"> {{ $value->author->name }} </a></td>
+                <td><a href="/publisher/{{ $value->publisher->id }}"> {{ $value->publisher->name }} </a></td>
                 <td>{{ $value->publisher_year }}</td>
                 <td>{{ $value->created_at }}</td>
                 <td>{{ $value->updated_at }}</td>
@@ -121,8 +131,10 @@
         </tbody>
     </table>
     <a href="/book/create">Add a new Book!</a><br>
-    <a href="/publisher">Visit publishers</a><br>
     <a href="/author">Visit authors</a><br>
+    <a href="/publisher">Visit publishers</a><br>
+    <a href="/user">Visit users</a><br>
+    <a href="/loan">Visit loans</a><br>
 </div>
 
 </body>

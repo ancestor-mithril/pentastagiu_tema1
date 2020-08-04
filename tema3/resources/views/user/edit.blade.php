@@ -91,38 +91,26 @@
     </div>
 @endif
 
-
 <div class="content">
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Created_at</td>
-            <td>Updated_at</td>
-            <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $publisher->id }}</td>
-                <td>{{ $publisher->name }}</td>
-                <td>{{ $publisher->created_at }}</td>
-                <td>{{ $publisher->updated_at }}</td>
-                <td>
-                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
-                        Edit this Publisher</a>
+    {{ Form::open(array('url' => '/user/' . $user->id, 'method' => 'PUT')) }}
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/publisher/create">Add a new Publisher!</a><br>
-    <a href="/publisher">See all publishers!</a><br>
+    <div class="form-group">
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', $user->name, array('class' => 'form-control')) }}
+
+        {{ Form::label('email', 'Email') }}
+        {{ Form::text('email', $user->email, array('class' => 'form-control')) }}
+
+        {{ Form::label('password', 'Password') }}
+        {{ Form::password('password', array('id' => 'password', "class" => "form-control", "autocomplete" => "off")) }}
+    </div>
+
+    {{ Form::submit('Edit the User!', array('class' => 'btn btn-primary')) }}
+
+    {{ Form::close() }}
+    <br>
+    <a href="/user/create">Add a new User!</a><br>
+    <a href="/user">See all users!</a><br>
 </div>
 
 </body>

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class CreatePublishersTable extends Migration
 {
@@ -18,6 +19,29 @@ class CreatePublishersTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('publishers')->insert([
+            [
+                'name' => 'publisher 1',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'publisher 2',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'publisher 3',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'publisher 4',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ]
+        ]);
     }
 
     /**

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUsersTable extends Migration
 {
@@ -22,6 +24,37 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'user 1',
+                'email' => 'user1@user.com',
+                'password' => Hash::make('kappa123'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'user 2',
+                'email' => 'user2@user.com',
+                'password' => Hash::make('admin'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'user 3',
+                'email' => 'user3@user.com',
+                'password' => Hash::make('qwerty'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ],
+            [
+                'name' => 'user 4',
+                'email' => 'user4@user.com',
+                'password' => Hash::make('1234567'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ]
+        ]);
     }
 
     /**

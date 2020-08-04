@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function show() {
+    public function show()
+    {
         return view('main_view');
     }
 }

@@ -91,13 +91,13 @@
     </div>
 @endif
 
-
 <div class="content">
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
             <td>ID</td>
             <td>Name</td>
+            <td>Email</td>
             <td>Created_at</td>
             <td>Updated_at</td>
             <td>Actions</td>
@@ -105,24 +105,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ $publisher->id }}</td>
-                <td>{{ $publisher->name }}</td>
-                <td>{{ $publisher->created_at }}</td>
-                <td>{{ $publisher->updated_at }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at }}</td>
+                <td>{{ $user->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'user/' . $user->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete this User', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
-                        Edit this Publisher</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('user/' . $user->id . '/edit') }}">Edit this User</a>
 
                 </td>
             </tr>
         </tbody>
     </table>
-    <a href="/publisher/create">Add a new Publisher!</a><br>
-    <a href="/publisher">See all publishers!</a><br>
+    <a href="/user/create">Add a new User!</a><br>
+    <a href="/user">See all users!</a><br>
 </div>
 
 </body>

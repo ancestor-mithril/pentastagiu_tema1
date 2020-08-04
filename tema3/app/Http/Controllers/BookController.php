@@ -14,15 +14,8 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::all();
-        //TODO: de preluat numele de la autor si editor in $books
-        foreach($books as $book) {
-            $author = Author::find($book->author_id);
-            $publisher = Publisher::find($book->publisher_id);
-
-            $book->author_id = $author["name"];
-            $book->publisher_id = $publisher["name"];
-        }
+        $books = Book::with('author')->with('publisher')->get();
+        //dd($books[0]->author, $books[0]->publisher, $books[0]);
         return view('book.index', ['books' => $books]);
     }
 
@@ -41,14 +34,20 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $author = Author::find($request->input('author_id'));
-        $publisher = Publisher::find($request->input('publisher_id'));
-        //dd($author, $publisher);
-        if ($author === null || $publisher === null)
-            return Redirect::to('book');
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'author_id' => 'required',
+            'publisher_id' => 'required',
+            'publisher_year' => 'required|integer',
         ]);
+        {//TODO: asta ar trebuii mutata intr-o clasa de validare
+            $author = Author::find($request->input('author_id'));
+            $publisher = Publisher::find($request->input('publisher_id'));
+
+            if ($author === null || $publisher === null)
+                return Redirect::back()->withErrors(['invalid form data']);
+        }
+
         $book = new Book();
         $book->title = $request->input('title');
         $book->author_id = $request->input('author_id');
@@ -61,10 +60,6 @@ class BookController extends Controller
     public function show(int $id)
     {
         $book = Book::find($id);
-        $author = Author::find($book->author_id);
-        $publisher = Publisher::find($book->publisher_id);
-        $book->author_id = $author["name"];
-        $book->publisher_id = $publisher["name"];
         return view('book.show', ['book' => $book]);
     }
 
@@ -78,14 +73,21 @@ class BookController extends Controller
 
     public function update(Request $request, int $id)
     {
-        $author = Author::find($request->input('author_id'));
-        $publisher = Publisher::find($request->input('publisher_id'));
-        //dd($author, $publisher);
-        if ($author === null || $publisher === null)
-            return Redirect::to('book');
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'author_id' => 'required',
+            'publisher_id' => 'required',
+            'publisher_year' => 'required|integer',
         ]);
+
+        {//TODO: asta ar trebuii mutata intr-o clasa de validare
+            $author = Author::find($request->input('author_id'));
+            $publisher = Publisher::find($request->input('publisher_id'));
+            if ($author === null || $publisher === null)
+                return Redirect::back()->withErrors(['invalid form data']);
+
+        }
         $updatedBook = Book::find($id);
         $updatedBook->title = $request->input('title');
         $updatedBook->author_id = $request->input('author_id');

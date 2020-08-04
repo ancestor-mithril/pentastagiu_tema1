@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    //
-    /**
-     * @var mixed
-     */
-    private $name;
-    /**
-     * @var mixed
-     */
-    private $id;
+    public function books()
+    {
+        return $this->hasMany('App\Models\Book');
+    }
+
+    public function delete()
+    {
+        foreach ($this->books as $book)
+            $book->delete();
+        return parent::delete();
+    }
 }

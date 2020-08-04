@@ -98,31 +98,38 @@
         <tr>
             <td>ID</td>
             <td>Name</td>
+            <td>Email</td>
             <td>Created_at</td>
             <td>Updated_at</td>
             <td>Actions</td>
         </tr>
         </thead>
         <tbody>
+        @foreach($users as $key => $value)
             <tr>
-                <td>{{ $publisher->id }}</td>
-                <td>{{ $publisher->name }}</td>
-                <td>{{ $publisher->created_at }}</td>
-                <td>{{ $publisher->updated_at }}</td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->name }}</td>
+                <td>{{ $value->email }}</td>
+                <td>{{ $value->created_at }}</td>
+                <td>{{ $value->updated_at }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
+                    {{ Form::open(array('url' => 'user/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ method_field('DELETE') }}
+                    {{ Form::submit('Delete this User', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
-                        Edit this Publisher</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('user/' . $value->id) }}">Show this User</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('user/' . $value->id . '/edit') }}">Edit this User</a>
 
                 </td>
             </tr>
+        @endforeach
         </tbody>
     </table>
-    <a href="/publisher/create">Add a new Publisher!</a><br>
-    <a href="/publisher">See all publishers!</a><br>
+    <a href="/user/create">Add a new User!</a><br>
+    <a href="/book">Visit books</a><br>
+    <a href="/author">Visit authors</a><br>
+    <a href="/publisher">Visit publishers</a><br>
+    <a href="/loan">Visit loans</a><br>
 </div>
 
 </body>

@@ -59,11 +59,8 @@ class PublisherController extends Controller
 
     public function destroy(int $id)
     {
-        DB::beginTransaction();
         $publisher = Publisher::find($id);
         $publisher->delete();
-        DB::table('books')->where('publisher_id', $id)->delete();
-        DB::commit();
         return Redirect::to('publisher');
     }
 }

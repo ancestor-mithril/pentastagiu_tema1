@@ -43,6 +43,22 @@ Route::get('/book/{id}/edit', 'BookController@edit');
 Route::put('/book/{id}', 'BookController@update');
 Route::delete('/book/{id}', 'BookController@destroy');
 
+Route::get('/user', 'UserController@index');
+Route::get('/user/create', 'UserController@create');
+Route::post('/user', 'UserController@store');
+Route::get('/user/{id}', 'UserController@show');
+Route::get('/user/{id}/edit', 'UserController@edit');
+Route::put('/user/{id}', 'UserController@update');
+Route::delete('/user/{id}', 'UserController@destroy');
+
+Route::get('/loan', 'LoanController@index');
+Route::get('/loan/create', 'LoanController@create');
+Route::post('/loan', 'LoanController@store');
+Route::get('/loan/{id}', 'LoanController@show');
+Route::get('/loan/{id}/edit', 'LoanController@edit');
+Route::put('/loan/{id}', 'LoanController@update');
+Route::delete('/loan/{id}', 'LoanController@destroy');
+
 /*Route::get('/da', function () {
     return view('da');
 });*/

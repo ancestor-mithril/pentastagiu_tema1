@@ -84,7 +84,8 @@
             <a href="/book">Visit books</a><br>
             <a href="/author">Visit authors</a><br>
             <a href="/publisher">Visit publishers</a><br>
-
+            <a href="/user">Visit users</a><br>
+            <a href="/loan">Visit loans</a><br>
         </div>
 
         <div class="links">

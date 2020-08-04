@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <!-- Styles -->
     <style>
         html, body {
@@ -91,39 +91,49 @@
     </div>
 @endif
 
-
 <div class="content">
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Created_at</td>
-            <td>Updated_at</td>
-            <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $publisher->id }}</td>
-                <td>{{ $publisher->name }}</td>
-                <td>{{ $publisher->created_at }}</td>
-                <td>{{ $publisher->updated_at }}</td>
-                <td>
-                    {{ Form::open(array('url' => 'publisher/' . $publisher->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Publisher', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                    <a class="btn btn-small btn-info" href="{{ URL::to('publisher/' . $publisher->id . '/edit') }}">
-                        Edit this Publisher</a>
+    {{ Form::open(array('url' => '/loan/' . $loan->id, 'method' => 'PUT')) }}
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/publisher/create">Add a new Publisher!</a><br>
-    <a href="/publisher">See all publishers!</a><br>
+    <div class="form-group">
+        {{ Form::label('book_id', 'Book') }}
+        {{ Form::select('book_id', $books, $loan->book_id, array('class' => 'form-control')) }}
+
+        {{ Form::label('user_id', 'User') }}
+        {{ Form::select('user_id', $users, $loan->user_id, array('class' => 'form-control')) }}
+
+        {{ Form::label('loan_begin', 'Date of loaning') }}
+        {{ Form::text('loan_begin', $loan->loan_begin, array('id' => 'datepicker_1', 'class' => 'form-control')) }}
+
+        {{ Form::label('loan_end', 'Date of return') }}
+        {{ Form::text('loan_end', $loan->loan_end, array('id' => 'datepicker_2', 'class' => 'form-control')) }}
+
+
+    </div>
+
+    {{ Form::submit('Edit the Loan!', array('class' => 'btn btn-primary')) }}
+
+    {{ Form::close() }}
+    <br>
+    <a href="/loan/create">Add a new Loan!</a><br>
+    <a href="/loan">See all loans!</a><br>
 </div>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $( "#datepicker_1" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    $(function() {
+        $( "#datepicker_2" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
 
 </body>
 </html>
