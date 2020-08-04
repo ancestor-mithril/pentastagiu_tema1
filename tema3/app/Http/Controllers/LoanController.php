@@ -49,17 +49,23 @@ class LoanController extends Controller
             $book = Book::find($request->input('book_id'));
             if ($user === null || $book === null)
                 return Redirect::back()->withErrors(["invalid form data"]);
-            if (Carbon::parse($loan_end)->lessThan(Carbon::parse($loan_begin)))
+            if (Carbon::parse($loan_end)->greaterThanOrEqualTo(Carbon::parse($loan_begin)))
                 return Redirect::back()->withErrors(["You cannot return the book before you loan it"]);
 
             $loans = Loan::where('book_id', $request->input('book_id'))->get();
 
             foreach ($loans as $loan) {
-                if (Carbon::parse($loan_begin)->greaterThan(Carbon::parse($loan->loan_begin))
-                    && Carbon::parse($loan_begin)->lessThan(Carbon::parse($loan->loan_end)))
+                if (Carbon::parse($loan_begin)->greaterThanOrEqualTo(Carbon::parse($loan->loan_begin))
+                    && Carbon::parse($loan_begin)->lessThanOrEqualTo(Carbon::parse($loan->loan_end)))
                     return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
-                if (Carbon::parse($loan_end)->greaterThan(Carbon::parse($loan->loan_begin))
-                    && Carbon::parse($loan_end)->lessThan(Carbon::parse($loan->loan_end)))
+                if (Carbon::parse($loan_end)->greaterThanOrEqualTo(Carbon::parse($loan->loan_begin))
+                    && Carbon::parse($loan_end)->lessThanOrEqualTo(Carbon::parse($loan->loan_end)))
+                    return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
+                if (Carbon::parse($loan->loan_begin)->greaterThanOrEqualTo(Carbon::parse($loan_begin))
+                    && Carbon::parse($loan->loan_begin)->lessThanOrEqualTo(Carbon::parse($loan_end)))
+                    return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
+                if (Carbon::parse($loan->loan_beginloan_end)->greaterThanOrEqualTo(Carbon::parse($loan_begin))
+                    && Carbon::parse($loan->loan_beginloan_end)->lessThanOrEqualTo(Carbon::parse($loan_end)))
                     return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
             }
         }
@@ -116,17 +122,23 @@ class LoanController extends Controller
             $book = Book::find($request->input('book_id'));
             if ($user === null || $book === null)
                 return Redirect::back()->withErrors(["invalid form data"]);
-            if (Carbon::parse($loan_end)->greaterThan(Carbon::parse($loan_begin)))
+            if (Carbon::parse($loan_end)->greaterThanOrEqualTo(Carbon::parse($loan_begin)))
                 return Redirect::back()->withErrors(["You cannot return the book before you loan it"]);
 
             $loans = Loan::where('book_id', $request->input('book_id'))->get();
 
             foreach ($loans as $loan) {
-                if (Carbon::parse($loan_begin)->greaterThan(Carbon::parse($loan->loan_begin))
-                    && Carbon::parse($loan_begin)->lessThan(Carbon::parse($loan->loan_end)))
+                if (Carbon::parse($loan_begin)->greaterThanOrEqualTo(Carbon::parse($loan->loan_begin))
+                    && Carbon::parse($loan_begin)->lessThanOrEqualTo(Carbon::parse($loan->loan_end)))
                     return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
-                if (Carbon::parse($loan_end)->greaterThan(Carbon::parse($loan->loan_begin))
-                    && Carbon::parse($loan_end)->lessThan(Carbon::parse($loan->loan_end)))
+                if (Carbon::parse($loan_end)->greaterThanOrEqualTo(Carbon::parse($loan->loan_begin))
+                    && Carbon::parse($loan_end)->lessThanOrEqualTo(Carbon::parse($loan->loan_end)))
+                    return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
+                if (Carbon::parse($loan->loan_begin)->greaterThanOrEqualTo(Carbon::parse($loan_begin))
+                    && Carbon::parse($loan->loan_begin)->lessThanOrEqualTo(Carbon::parse($loan_end)))
+                    return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
+                if (Carbon::parse($loan->loan_beginloan_end)->greaterThanOrEqualTo(Carbon::parse($loan_begin))
+                    && Carbon::parse($loan->loan_beginloan_end)->lessThanOrEqualTo(Carbon::parse($loan_end)))
                     return Redirect::back()->withErrors(["Book already lent during this tiem period"]);
             }
         }
