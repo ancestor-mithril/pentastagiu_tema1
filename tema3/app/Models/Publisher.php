@@ -13,8 +13,9 @@ class Publisher extends Model
 
     public function delete()
     {
-        foreach ($this->books as $book)
+        foreach ($this->books as $book) {
             $book->delete();
+        }
         return parent::delete();
     }
 }

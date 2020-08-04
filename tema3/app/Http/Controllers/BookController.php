@@ -22,11 +22,13 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        if ($authors->isEmpty())
+        if ($authors->isEmpty()) {
             return Redirect::to('author/create');
+        }
         $publishers = Publisher::all();
-        if ($publishers->isEmpty())
+        if ($publishers->isEmpty()) {
             return Redirect::to('publisher/create');
+        }
         $authors = Author::pluck('name', 'id');
         $publishers = Publisher::pluck('name', 'id');
         return view('book.create', ['authors' => $authors, 'publishers' => $publishers]);
@@ -40,12 +42,15 @@ class BookController extends Controller
             'publisher_id' => 'required',
             'publisher_year' => 'required|integer',
         ]);
+
         {//TODO: asta ar trebuii mutata intr-o clasa de validare
             $author = Author::find($request->input('author_id'));
             $publisher = Publisher::find($request->input('publisher_id'));
 
-            if ($author === null || $publisher === null)
+            if ($author === null || $publisher === null) {
                 return Redirect::back()->withErrors(['invalid form data']);
+            }
+
         }
 
         $book = new Book();
@@ -73,7 +78,6 @@ class BookController extends Controller
 
     public function update(Request $request, int $id)
     {
-
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'author_id' => 'required',
@@ -84,10 +88,11 @@ class BookController extends Controller
         {//TODO: asta ar trebuii mutata intr-o clasa de validare
             $author = Author::find($request->input('author_id'));
             $publisher = Publisher::find($request->input('publisher_id'));
-            if ($author === null || $publisher === null)
+            if ($author === null || $publisher === null) {
                 return Redirect::back()->withErrors(['invalid form data']);
-
+            }
         }
+
         $updatedBook = Book::find($id);
         $updatedBook->title = $request->input('title');
         $updatedBook->author_id = $request->input('author_id');
